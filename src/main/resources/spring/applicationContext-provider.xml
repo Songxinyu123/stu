@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo 
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- 1. 设置应用名称-->
+	<dubbo:application name="provider-of-jtsearch" />
+	<dubbo:registry address="zookeeper://192.168.56.134:2181" timeout="90000">
+	</dubbo:registry>
+	<dubbo:protocol name="dubbo" port="20892">
+	</dubbo:protocol>
+	<bean class="com.jt.search.service.SearchServiceImpl" id="searchService">
+	</bean>
+	<dubbo:service interface="com.jt.search.service.SearchService"
+		ref="searchService"></dubbo:service>
+
+	</beans>
